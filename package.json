@@ -1,0 +1,22 @@
+{
+  "name": "society-suite",
+  "version": "1.0.0",
+  "description": "A set of tools designed to enable a better management of fut7/society leagues",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/offthread/society-suite.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/offthread/society-suite/issues"
+  },
+  "homepage": "https://github.com/offthread/society-suite#readme",
+  "dependencies": {
+    "ejs": "^2.5.6"
+  }
+}
