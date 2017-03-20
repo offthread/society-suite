@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="css/classifier.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+<hr>
+<div class="container bootstrap snippet">
+    <div class="row">
+            <div class="col-lg-12">
+                <div class="main-box no-header clearfix">
+                    <div class="main-box-body clearfix">
+                        <div class="table-responsive">
+                            <table class="table user-list">
+                                <thead>
+                                <center>Por favor, defina uma nota pra cada atleta e submeta suas classificações ao final do formulário. Os sorteios serão realizados de acordo com a ponderação de todas as classificações enviadas</center>
+                                </thead>
+                                <tbody>
+                                    <% for(var i=0; i<users.length; i++) {%>
+                                       <tr>
+                                            <td>
+                                                <img src="<%= users[i].picture %>" alt="">
+                                                <a href="#" class="user-link"><%= users[i].name %></a>
+                                                <span class="user-subhead">
+                                                    Nota:
+                                                    <select>
+                                                      <option></option>
+                                                      <option>1</option>
+                                                      <option>2</option>
+                                                      <option>3</option>
+                                                      <option>4</option>
+                                                      <option>5</option>
+                                                      <option>6</option>
+                                                      <option>7</option>
+                                                      <option>8</option>
+                                                      <option>9</option>
+                                                      <option>10</option>
+                                                    </select>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <center><button type="button" class="btn btn-primary">Enviar Classificações</button>
+</center>
+</body>
+</html>

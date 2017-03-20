@@ -1,4 +1,8 @@
 
+var dbconfig = require('../config/database');
+var mysql = require('mysql');
+
+
 // app/routes.js
 module.exports = function(app, passport) {
 	app.engine('html', require('ejs').renderFile);
@@ -25,7 +29,12 @@ module.exports = function(app, passport) {
 
 	app.get('/classifier', function (req, res) {
 	  if(req.user) {
-	  	res.render('classifier/classifier.html');
+	  	var connection = mysql.createConnection(dbconfig.connection);
+	  	connection.query('SELECT * from rda_schema.users', function (error, results, fields) {
+		  if (error) throw error;
+		  res.render('classifier/classifier.ejs', {users: results});
+		});
+
 	  }
 	  else {
 	  	res.redirect('/login');

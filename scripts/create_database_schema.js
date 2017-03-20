@@ -9,12 +9,27 @@ connection.query('\
 CREATE TABLE `' + dbconfig.database + '`.`' + dbconfig.users_table + '` ( \
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT, \
     `username` VARCHAR(20) NOT NULL, \
+    `name` VARCHAR(20) NOT NULL,\
     `password` CHAR(60) NOT NULL, \
+    `picture` VARCHAR(500) NOT NULL, \
     `is_admin` TINYINT(1) NOT NULL, \
         PRIMARY KEY (`id`), \
     UNIQUE INDEX `id_UNIQUE` (`id` ASC), \
     UNIQUE INDEX `username_UNIQUE` (`username` ASC) \
 )');
+
+// connection.query('\
+// CREATE TABLE `' + dbconfig.database + '`.`' + dbconfig.users_table + '` ( \
+//     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT, \
+//     `username` VARCHAR(20) NOT NULL, \
+//     `name` VARCHAR(20) NOT NULL,\
+//     `password` CHAR(60) NOT NULL, \
+//     `picture` VARCHAR(30) NOT NULL, \
+//     `is_admin` TINYINT(1) NOT NULL, \
+//         PRIMARY KEY (`id`), \
+//     UNIQUE INDEX `id_UNIQUE` (`id` ASC), \
+//     UNIQUE INDEX `username_UNIQUE` (`username` ASC) \
+// )');
 
 console.log('Success: Database Created!')
 
