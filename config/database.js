@@ -3,7 +3,7 @@ module.exports = {
     'connection': {
         'host': 'localhost',
         'user': 'root',
-        'password': 'prologo'
+        'password': 'test'
     },
 	'database': 'rda_schema',
     'users_table': 'users'
