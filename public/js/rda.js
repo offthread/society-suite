@@ -11,6 +11,7 @@ $( document ).ready(function() {
 	  $.ajax({
 		  type: "POST",
 		  url: "/classifier/",
+		  dataType: 'jsonp',
 		  data: {
 		  	classifications: classifications
 		  },
@@ -19,7 +20,21 @@ $( document ).ready(function() {
 		        window.location.href = "/login";
 		  },
 		  error: function(XMLHttpRequest, textStatus, errorThrown) {
-		     alert("Houve algum erro com a sua classificação. Entre em contato com a Diretoria e tente novamente em alguns instantes");
+		  	 if (XMLHttpRequest.status == 401) {
+		  	 	alert("Você já enviou uma classificação essa semana. "
+		  	 		+ "Aguarde o racha da próxima semana para atualizar suas classificações");
+		  	 	window.location.href = "/login";
+		  	 	return;
+		  	 }
+		  	 else if (XMLHttpRequest.status == 200) {
+		  	 	 alert( "Suas classificações foram salvas!" );
+		         window.location.href = "/login";
+		  	 }
+
+		  	 else {
+			     alert("Houve algum erro com a sua classificação. Entre em contato com a Diretoria e tente novamente em alguns instantes");
+		  	 }
+
 		  }
 		});
 	});
@@ -35,5 +50,9 @@ $( document ).ready(function() {
 		     alert("Erro no sorteio!");
 		  }
 		});
+	});
+
+	$( "#button_classify" ).click(function() {
+		 window.location.href = "/classifier";
 	});
 });

@@ -43,15 +43,43 @@ module.exports = function(app, passport) {
 
 	app.post('/classifier', function (req, res) {
 		var connection = mysql.createConnection(dbconfig.connection);
-		classifications = req.body.classifications
-		for (var i = 0; i < classifications.length; i++) {
-			classification = classifications[i]
-			if (classification[1].length > 0) {
-				connection.query('INSERT INTO rda_schema.classifications (created_time, classifier, classified, classification) values(' + connection.escape(new Date()) + ', ' + req.user.id + ', ' + classification[0] + ', ' + classification[1] + ')');
-			}
-		}
 
-		res.sendStatus(200)
+		connection.query('SELECT created_time from rda_schema.classifications WHERE classifier=' + req.user.id
+			+ ' ORDER BY created_time ASC', function (error, results, fields) {
+		  if (error) throw error;
+
+		  if (results.length > 0) {
+		  	  date_now = new Date()
+			  last_sent_classification = new Date(results[0].created_time)
+			  hours_since_last_classification = Math.abs(date_now - last_sent_classification) / 36e5
+			  if (hours_since_last_classification < 168) {
+			  	res.statusCode = 401;
+				res.send('None shall pass');
+			  }
+			  else {
+			  	classifications = req.body.classifications
+				for (var i = 0; i < classifications.length; i++) {
+					classification = classifications[i]
+					if (classification[1].length > 0) {
+						connection.query('INSERT INTO rda_schema.classifications (created_time, classifier, classified, classification) values(' + connection.escape(new Date()) + ', ' + req.user.id + ', ' + classification[0] + ', ' + classification[1] + ')');
+					}
+					res.statusCode = 200;
+					res.send('Sucessful');
+				}
+			  }
+		  }
+		  else {
+		  	classifications = req.body.classifications
+			for (var i = 0; i < classifications.length; i++) {
+				classification = classifications[i]
+				if (classification[1].length > 0) {
+					connection.query('INSERT INTO rda_schema.classifications (created_time, classifier, classified, classification) values(' + connection.escape(new Date()) + ', ' + req.user.id + ', ' + classification[0] + ', ' + classification[1] + ')');
+				}
+			}
+			res.statusCode = 200;
+			res.send('Sucessful');
+		  }
+		});
 
 	})
 
@@ -100,6 +128,10 @@ module.exports = function(app, passport) {
 		current_year = now.getFullYear()
 		current_month = now.getMonth()
 
+		var monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+		  "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+		];
+
 		connection.query('SELECT color, players FROM rda_schema.teams WHERE year='  + current_year + ' AND month=' + current_month, function(err, rows, fields) {
 			if (err) throw err;
 			red_team_data = null
@@ -118,23 +150,23 @@ module.exports = function(app, passport) {
 				}
 			}
 
-			connection.query('SELECT id, name FROM rda_schema.users', function(err, rows, fields) {
+			connection.query('SELECT id, name, picture FROM rda_schema.users', function(err, rows, fields) {
 				user_mapping = {}
 				for (var i = 0; i < rows.length; i++) {
-					user_mapping[parseInt(rows[i].id)] = rows[i].name
+					user_mapping[parseInt(rows[i].id)] = [rows[i].name, rows[i].picture]
 				}
+
+				console.log(user_mapping)
+
 				res.render('teams/team_list.ejs', {user_mapping: user_mapping,
-					red_team: red_team_data, yellow_team: yellow_team_data, green_team: green_team_data});
+					red_team: red_team_data, yellow_team: yellow_team_data, green_team: green_team_data,
+					year: current_year, month: monthNames[current_month]});
 			})
 
 		})
 
 
 	})
-
-
-
-
 
 	app.get('/selector', function (req, res) {
 	  if (req.user.is_admin) {
