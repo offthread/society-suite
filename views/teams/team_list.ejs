@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>RdA - Sorteio Atual</title>
+
     <link rel="stylesheet" href="css/rda.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/login.css">
     <script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
     <script type="text/javascript" src="js/classifier.js"></script>
+    <script type="text/javascript" src="js/rda.js"></script>
+
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
+  <button type="button" id="login_button" class="btn btn-primary" style="float: right; margin-right: 6px; margin-top: 6px;">Login</button>
   <center>
-    <center><img src="images/rda_logo1.png"></center>
+    <center><img src="images/rda_logo1.png" style="margin-left: 60px"></center>
     <div style="margin-top: 10px; margin-bottom: 10px; font-size: 20px; font-style:bold" >Série de <%= month %>/<%= year %></div>
     <ul class="list-group" style="width: 350px; float:left; margin-left: 70px; background-color: red">
       <strong>Time Vermelho</strong>

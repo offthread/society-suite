@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Classificador - Racha dos Amigles</title>
     <link rel="stylesheet" href="css/classifier.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/login.css">
     <script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
     <script type="text/javascript" src="js/rda.js"></script>
+
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 </head>
 <body>
+<button type="button" id="logout_button" class="btn btn-primary" style="float: right; margin-right: 6px; margin-top: 6px;">Logout</button>
 
 <hr>
 <div class="container bootstrap snippet">
+    <center><strong style="font-size:20px">Classificador de Jogadores - Racha dos Amigles</strong></center>
     <div class="row">
             <div class="col-lg-12">
                 <div class="main-box no-header clearfix">
@@ -18,7 +24,7 @@
                         <div class="table-responsive">
                             <table class="table user-list">
                                 <thead>
-                                <center>Por favor, defina uma nota pra cada atleta e submeta suas classificações ao final do formulário. Os sorteios serão realizados de acordo com a ponderação de todas as classificações enviadas</center>
+                                <center><strong>Por favor, defina uma nota pra cada atleta e submeta suas classificações ao final do formulário (classificações em branco não serão computadas). Os sorteios serão realizados de acordo com a ponderação de todas as classificações enviadas</strong></center>
                                 </thead>
                                 <tbody>
                                     <% for(var i=0; i<users.length; i++) {%>

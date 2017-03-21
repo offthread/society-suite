@@ -117,12 +117,12 @@ module.exports = function(app, passport) {
 			connection.query('INSERT INTO rda_schema.teams (year, month, color, players) VALUES '
 			 + '(' + now.getFullYear() + ', ' + now.getMonth() + ', "green", ' + connection.escape(json_green_team) + ')')
 
-			res.redirect('/draw_teams');
+			res.redirect('/');
 		})
 
 	})
 
-	app.get('/draw_teams', function (req, res) {
+	app.get('/', function (req, res) {
 		var connection = mysql.createConnection(dbconfig.connection);
 		now = new Date()
 		current_year = now.getFullYear()

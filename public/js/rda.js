@@ -44,7 +44,7 @@ $( document ).ready(function() {
 		  type: "POST",
 		  url: "/draw_teams/",
 		  success: function(msg){
-	         window.location.href = "/draw_teams";
+	         window.location.href = "/";
 		  },
 		  error: function(XMLHttpRequest, textStatus, errorThrown) {
 		     alert("Erro no sorteio!");
@@ -54,5 +54,13 @@ $( document ).ready(function() {
 
 	$( "#button_classify" ).click(function() {
 		 window.location.href = "/classifier";
+	});
+
+	$( "#login_button" ).click(function() {
+		 window.location.href = "/login";
+	});
+
+	$( "#logout_button" ).click(function() {
+		 window.location.href = "/login";
 	});
 });
