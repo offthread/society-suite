@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node app.js",
     "create_database": "node scripts/create_database_schema.js",
-    "create_user": "node scripts/create_user.js",
+    "create_users": "node scripts/create_users.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

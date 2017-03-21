@@ -4,10 +4,11 @@
     <link rel="stylesheet" href="css/classifier.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/login.css">
+    <script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
+    <script type="text/javascript" src="js/rda.js"></script>
 </head>
 <body>
 
-<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 <hr>
 <div class="container bootstrap snippet">
     <div class="row">
@@ -23,11 +24,11 @@
                                     <% for(var i=0; i<users.length; i++) {%>
                                        <tr>
                                             <td>
-                                                <img src="<%= users[i].picture %>" alt="">
+                                                <img src="<%= users[i].picture %>" height="50" width="50" alt="">
                                                 <a href="#" class="user-link"><%= users[i].name %></a>
                                                 <span class="user-subhead">
                                                     Nota:
-                                                    <select>
+                                                    <select id="classification-<%= users[i].id %>">
                                                       <option></option>
                                                       <option>1</option>
                                                       <option>2</option>
@@ -52,7 +53,7 @@
             </div>
         </div>
     </div>
-    <center><button type="button" class="btn btn-primary">Enviar Classificações</button>
+    <center><button id="send_classifications" type="button" class="btn btn-primary">Enviar Classificações</button>
 </center>
 </body>
 </html>
