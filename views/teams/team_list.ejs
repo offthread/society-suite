@@ -14,47 +14,48 @@
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 </head>
 
+<center>
 <body>
   <button type="button" id="login_button" class="btn btn-primary" style="float: right; margin-right: 6px; margin-top: 6px;">Login</button>
-  <center>
-    <center><img src="images/rda_logo1.png" style="margin-left: 60px"></center>
-    <div style="margin-top: 10px; margin-bottom: 10px; font-size: 20px; font-style:bold" >Série de <%= month %>/<%= year %></div>
-    <ul class="list-group" style="width: 350px; float:left; margin-left: 70px; background-color: red">
-      <strong>Time Vermelho</strong>
-      <% for(var i=0; i<red_team_data.length; i++) {%>
-      <li class="list-group-item justify-content-between" style="height: 45px">
-        <img width="30" height="30" src="<%= user_mapping[red_team_data[i].classified][1] %>">
-        <%= user_mapping[red_team_data[i].classified][0] %>
-        <span class="badge badge-default badge-pill"><%= red_team_data[i].average_value%></span>
-      </li>
-      <% } %>
-    </ul>
-  </center>
+    <img src="images/rda_logo1.png" style="margin-left: 60px">
 
-  <center>
-    <ul class="list-group" style="width: 350px; float:left; margin-left: 70px; background-color: yellow">
-      <strong>Time Amarelo</strong>
-      <% for(var i=0; i<yellow_team_data.length; i++) {%>
-      <li class="list-group-item justify-content-between" style="height: 45px">
-        <img width="30" height="30" src="<%= user_mapping[yellow_team_data[i].classified][1] %>">
-        <%= user_mapping[yellow_team_data[i].classified][0] %>
-        <span class="badge badge-default badge-pill"><%= yellow_team_data[i].average_value%></span>
-      </li>
-      <% } %>
-    </ul>
-  </center>
+    <div style="position: relative">
+        <div style="margin-top: 10px; margin-bottom: 10px; font-size: 20px; font-style:bold" >Série de <%= month %>/<%= year %></div>
 
-  <center>
-    <ul class="list-group" style="width: 350px; float:left; margin-left: 70px; background-color: green">
-      <strong>Time Verde</strong>
-      <% for(var i=0; i<green_team_data.length; i++) {%>
-      <li class="list-group-item justify-content-between" style="height: 45px">
-        <img width="30" height="30" src="<%= user_mapping[green_team_data[i].classified][1] %>">
-        <%= user_mapping[green_team_data[i].classified][0] %>
-        <span class="badge badge-default badge-pill"><%= green_team_data[i].average_value%></span>
-      </li>
-      <% } %>
-    </ul>
-  </center>
+      <div id="wrapper" style="text-align: center">
+        <ul class="list-group" style="width: 350px; display:inline-block; margin-left: 70px; background-color: red">
+          <strong>Time Vermelho</strong>
+          <% for(var i=0; i<red_team_data.length; i++) {%>
+          <li class="list-group-item justify-content-between" style="height: 45px">
+            <img width="30" height="30" src="<%= user_mapping[red_team_data[i].classified][1] %>">
+            <%= user_mapping[red_team_data[i].classified][0] %>
+            <span class="badge badge-default badge-pill"><%= red_team_data[i].average_value%></span>
+          </li>
+          <% } %>
+        </ul>
+
+        <ul class="list-group" style="width: 350px; display:inline-block; margin-left: 70px; background-color: yellow">
+          <strong>Time Amarelo</strong>
+          <% for(var i=0; i<yellow_team_data.length; i++) {%>
+          <li class="list-group-item justify-content-between" style="height: 45px">
+            <img width="30" height="30" src="<%= user_mapping[yellow_team_data[i].classified][1] %>">
+            <%= user_mapping[yellow_team_data[i].classified][0] %>
+            <span class="badge badge-default badge-pill"><%= yellow_team_data[i].average_value%></span>
+          </li>
+          <% } %>
+        </ul>
+
+        <ul class="list-group" style="width: 350px; display:inline-block; margin-left: 70px; background-color: green">
+          <strong>Time Verde</strong>
+          <% for(var i=0; i<green_team_data.length; i++) {%>
+          <li class="list-group-item justify-content-between" style="height: 45px">
+            <img width="30" height="30" src="<%= user_mapping[green_team_data[i].classified][1] %>">
+            <%= user_mapping[green_team_data[i].classified][0] %>
+            <span class="badge badge-default badge-pill"><%= green_team_data[i].average_value%></span>
+          </li>
+          <% } %>
+        </ul>
+      </div>
 </body>
+</center>
 </html>
