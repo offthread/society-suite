@@ -86,8 +86,15 @@ module.exports = function(app, passport) {
 	app.post('/draw_teams', function (req, res) {
 		var connection = mysql.createConnection(dbconfig.connection);
 
+		classifications_start_time = new Date()
+		classifications_start_time.setDate(classifications_start_time.getDate()-30);
+
+		classifications_end_time = new Date()
+
 		connection.query("SELECT classified, AVG(classification) AS average_value"
-		 + " FROM rda_schema.classifications GROUP BY classified"
+		 + " FROM rda_schema.classifications"
+		 + " WHERE created_time BETWEEN " + connection.escape(classifications_start_time) + " AND " + connection.escape(classifications_end_time)
+		 + " GROUP BY classified"
 		 + " ORDER BY average_value DESC", function(err, rows, fields) {
 			if (err) throw err;
 			group_one = shuffle(rows.slice(0,3))
@@ -155,8 +162,6 @@ module.exports = function(app, passport) {
 				for (var i = 0; i < rows.length; i++) {
 					user_mapping[parseInt(rows[i].id)] = [rows[i].name, rows[i].picture]
 				}
-
-				console.log(user_mapping)
 
 				res.render('teams/team_list.ejs', {user_mapping: user_mapping,
 					red_team: red_team_data, yellow_team: yellow_team_data, green_team: green_team_data,
