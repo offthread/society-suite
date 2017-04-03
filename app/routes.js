@@ -174,14 +174,19 @@ module.exports = function(app, passport) {
 	})
 
 	app.get('/selector', function (req, res) {
-	  if (req.user.is_admin) {
-	  	res.render('misc/module_selector.html');
+	  if (req.user) {
+	  	if (req.user.is_admin) {
+		  	res.render('misc/module_selector.html');
+		  }
+		  else {
+		  	res.redirect('/classifier');
+		  }
 	  }
 	  else {
-	  	res.redirect('/classifier');
+	  	res.redirect('/login');
 	  }
 
-	})
+	});
 
 	/**
 	 * Shuffles array in place.
