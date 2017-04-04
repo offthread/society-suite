@@ -1,24 +1,76 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Racha dos Amigles</title>
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/login.css">
 
-  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+<head>
+    <title>Racha dos Amigles - 2017</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/login.css">
+
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 </head>
+
 <body>
-  <div style="margin-top:100px">
-    <center><img src="images/rda_logo1.png"></center>
-    <div class="wrapper" style="margin-top:-40px">
-      <form class="form-signin" action="/login" method="post">
-        <center><h2 class="form-signin-heading">Autentique-se</h2></center>
-        <input type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" />
-        <input type="password" class="form-control" name="password" placeholder="Password" required="" style="margin-top: 5px;"/>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-top: 15px;">Login</button>
-      </form>
+    <div class="row">
+        <nav>
+            <div class="row is-flex nav-bar">
+                <div class="col-md-3 col-xs-12">
+                    <img class="img-responsive logo" src="images/rda_logo1.png">
+                </div>
+                <div class="col-md-6 col-xs-12 text-center main-container">
+                    <h1 class="main-title">
+                        Racha dos Amigles - 2017
+                    </h1>
+                </div>
+                <div class="col-md-3 col-xs-12 action-area">
+                    <a class="action-text" href="/">Ver Último Sorteio</a>
+                </div>
+            </div>
+        </nav>
+
+        <br>
+        <br>
+
+        <main>
+            <div id="main-info" class="row">
+                <div class="col-md-3 col-lg-3"></div>
+                <div class="col-md-6 col-xs-12 col-lg-6">
+                    <div class="row">
+                        <div class="col-md-12 grayed-area">
+                            <br>
+                            <h1 class="main-area-text text-center">Log In</h1>
+                            <form action="/login " method="post">
+                                <div class="form-group">
+                                    <label for="username" class="label">Email:</label>
+                                    <input class="form-control" type="text" id="username" placeholder="Email" name="username" required />
+                                </div>
+
+                                <br>
+
+                                <div class="form-group">
+                                    <label for="username" class="label">Password:</label>
+                                    <input type="password" class="form-control" type="text" id="username" placeholder="Password" name="password" required/>
+                                </div>
+
+                                <br>
+
+                                <div class="form-group text-center">
+                                    <button class="btn btn-primary btn-lg btn-block" type="submit">Log In</button>
+                                </div>
+
+                                <br>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-lg-3 "></div>
+            </div>
+        </main>
     </div>
-  </div>
+
 </body>
+
 </html>

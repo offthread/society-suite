@@ -1,0 +1,55 @@
+body {
+    max-width: 80%;
+    margin: 0 auto;
+    background: #eee;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.red-team {
+    background-color: red;
+}
+
+.h3-team-list {
+    color: black;
+}
+
+.yellow-team {
+    background-color: yellow;
+}
+
+.green-team {
+    background-color: green;
+}
+
+.table-teams {
+    background-color: white;
+}
+
+.profile-image {
+    width: 30px;
+    height: 30px;
+}
+
+.gold {
+    color: gold;
+}
+
+.grayed-area {
+    width: 100%;
+}
+
+@media screen and (max-width: 500px) {
+    .athlete-name {
+        text-align: left;
+    }
+    .athlete-picture {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 500px) and (max-width: 992px) {
+    .col-md-2 {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
