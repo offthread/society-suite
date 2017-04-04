@@ -1,65 +1,248 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>RdA - Sorteio Atual</title>
 
-    <link rel="stylesheet" href="css/rda.css">
+<head>
+    <title>Racha dos Amigles - 2017</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/rda.css">
     <script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
-    <script type="text/javascript" src="js/classifier.js"></script>
     <script type="text/javascript" src="js/rda.js"></script>
 
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 </head>
 
-<center>
 <body>
-  <button type="button" id="login_button" class="btn btn-primary" style="float: right; margin-right: 6px; margin-top: 6px;">Login</button>
-    <img src="images/rda_logo1.png" style="margin-left: 60px">
-    <% if (red_team_data) {%>
-      <div style="position: relative">
-          <div style="margin-top: 10px; margin-bottom: 10px; font-size: 20px; font-style:bold" >Série de <%= month %>/<%= year %></div>
+    <div class="row">
+        <nav>
+            <div class="row nav-bar is-flex">
+                <div class="col-md-3 col-xs-12 logo-container">
+                    <img class="img-responsive logo" src="images/rda_logo1.png">
+                </div>
+                <div class="col-md-6 col-xs-12 text-center main-container">
+                    <h1 class="main-title">
+                        Série de
+                        <%= month %> /
+                            <%= year %>
+                    </h1>
+                </div>
 
-        <div id="wrapper" style="text-align: center">
-          <ul class="list-group" style="width: 350px; display:inline-block; margin-left: 70px; background-color: red">
-            <strong>Time Vermelho</strong>
-            <% for(var i=0; i<red_team_data.length; i++) {%>
-            <li class="list-group-item justify-content-between" style="height: 45px">
-              <img width="30" height="30" src="<%= user_mapping[red_team_data[i].classified][1] %>">
-              <%= user_mapping[red_team_data[i].classified][0] %>
-              <span class="badge badge-default badge-pill"><%= red_team_data[i].average_value%></span>
-            </li>
-            <% } %>
-          </ul>
+                <div class="col-md-3 col-xs-12 action-area">
+                    <a class="action-text text-center" href="/login">Login</a>
+                </div>
+            </div>
+        </nav>
 
-          <ul class="list-group" style="width: 350px; display:inline-block; margin-left: 70px; background-color: yellow">
-            <strong>Time Amarelo</strong>
-            <% for(var i=0; i<yellow_team_data.length; i++) {%>
-            <li class="list-group-item justify-content-between" style="height: 45px">
-              <img width="30" height="30" src="<%= user_mapping[yellow_team_data[i].classified][1] %>">
-              <%= user_mapping[yellow_team_data[i].classified][0] %>
-              <span class="badge badge-default badge-pill"><%= yellow_team_data[i].average_value%></span>
-            </li>
-            <% } %>
-          </ul>
+        <br>
+        <br>
+        <% if (red_team_data === undefined) { %>
+            <main>
+                <div id="main-info" class="row text-center">
+                    <div class="col-md-3 col-lg-1"></div>
+                    <div class="col-md-6 col-xs-12 col-lg-10">
+                        <div class="row grayed-area">
+                            <div class="col-md-12 text-center">
+                                <h2 class="main-area-text">Sem sorteios disponíveis para esse mês.</h2>
+                                <h3 class="h3-team-list">Aguarde o primeiro racha do mês para visualizar os times</h3>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+    </main>
 
-          <ul class="list-group" style="width: 350px; display:inline-block; margin-left: 70px; background-color: green">
-            <strong>Time Verde</strong>
-            <% for(var i=0; i<green_team_data.length; i++) {%>
-            <li class="list-group-item justify-content-between" style="height: 45px">
-              <img width="30" height="30" src="<%= user_mapping[green_team_data[i].classified][1] %>">
-              <%= user_mapping[green_team_data[i].classified][0] %>
-              <span class="badge badge-default badge-pill"><%= green_team_data[i].average_value%></span>
-            </li>
-            <% } %>
-          </ul>
-        </div>
-    <%} else {%>
-    <br>
-    <span style="font-size: 20px" class="label label-warning">Sem sorteios disponíveis para esse mês.<br>Aguarde o primeiro racha do mês para visualizar os times</span>
-    <% } %>
+    <% } else { %>
+
+
+        <main class="row">
+            <div id="main-info" class="col-md-12 text-center grayed-area">
+                <div class="row">
+                    <div class="col-md-2 col-lg-1"></div>
+                    <div class="col-md-8 col-lg-10">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <h3 class="h3-team-list">Times sorteados</h3>
+                                <br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-xs-12 col-lg-4">
+                                <div class="row">
+                                    <div class="col-md-12 red-team">
+                                        <strong>Time Vermelho</strong>
+                                    </div>
+                                </div>
+
+                                <% for(var i = 0; i < red_team_data.length; i++) { %>
+                                    <div class="row table-teams">
+                                        <div class="col-md-3 col-xs-2 col-lg-3">
+                                            <img class="profile-image athlete-picture" src="<%= user_mapping[red_team_data[i].classified][1] %>">
+                                        </div>
+                                        <div class="col-md-6 col-xs-8 athlete-name col-lg-6">
+                                            <%= user_mapping[red_team_data[i].classified][0] %>
+                                        </div>
+                                        <div class="col-md-3 col-xs-2 col-lg-3 athlete-classification">
+                                            <span class="text-success"><%= red_team_data[i].average_value%><i class="fa fa-star gold"></i></span>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                            </div>
+                            <div class="col-md-4 col-xs-12 col-lg-4">
+                                <div class="row">
+                                    <div class="col-md-12 yellow-team">
+                                        <strong>Time Amarelo</strong>
+                                    </div>
+                                </div>
+
+                                <% for(var i = 0; i < yellow_team_data.length; i++) { %>
+                                    <div class="row table-teams">
+                                        <div class="col-md-3 col-xs-2 col-lg-3">
+                                            <img class="profile-image athlete-picture" src="<%= user_mapping[yellow_team_data[i].classified][1] %>">
+                                        </div>
+                                        <div class="col-md-6 col-xs-8 athlete-name col-lg-6">
+                                            <%= user_mapping[yellow_team_data[i].classified][0] %>
+                                        </div>
+                                        <div class="col-md-3 col-xs-2 col-lg-3 athlete-classification">
+                                            <span class="text-success"><%= yellow_team_data[i].average_value%><i class="fa fa-star gold"></i></span>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                            </div>
+                            <div class="col-md-4 col-xs-12 col-lg-4">
+                                <div class="row">
+                                    <div class="col-md-12 green-team">
+                                        <strong>Time Verde</strong>
+                                    </div>
+                                </div>
+
+                                <% for(var i = 0; i < green_team_data.length; i++) { %>
+                                    <div class="row table-teams">
+                                        <div class="col-md-3 col-xs-2 col-lg-3">
+                                            <img class="profile-image athlete-picture" src="<%= user_mapping[green_team_data[i].classified][1] %>">
+                                        </div>
+                                        <div class="col-md-6 col-xs-8 athlete-name col-lg-6">
+                                            <%= user_mapping[green_team_data[i].classified][0] %>
+                                        </div>
+                                        <div class="col-md-3 col-xs-2 col-lg-3 athlete-classification">
+                                            <span class="text-success"><%= green_team_data[i].average_value%><i class="fa fa-star gold"></i></span>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                    <div class="col-md-2 col-lg-1"></div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!--<div class="col-md-6 col-xs-12 col-lg-10">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h3 class="h3-team-list">Times sorteados</h3>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-xs-12">
+                            <div class="row">
+                                <div class="col-md-12 red-team">
+                                    <strong>Time Vermelho</strong>
+                                </div>
+                            </div>
+
+                            <% for(var i = 0; i < red_team_data.length; i++) { %>
+                                <div class="row table-teams">
+                                    <div class="col-md-2 athlete-picture">
+                                        <img class="img-responsive profile-image" src="<%= user_mapping[red_team_data[i].classified][1] %>">
+                                    </div>
+                                    <div class="col-md-8 col-xs-10 athlete-name">
+                                        <%= user_mapping[red_team_data[i].classified][0] %>
+                                    </div>
+                                    <div class="col-md-2 col-xs-2 athlete-classification">
+                                        <span class="fa-stack">
+                                                      <i class="fa fa-star fa-stack-2x gold"></i>
+                                            <span class="fa fa-stack"><%= red_team_data[i].average_value%></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                            </div>
+                            <div class="col-md-4 col-xs-12">
+                                <div class="row">
+                                    <div class="col-md-12 yellow-team">
+                                        <strong>Time Amarelo</strong>
+                                    </div>
+                                </div>
+                                <% for(var i = 0; i < yellow_team_data.length; i++) { %>
+                                    <div class="row table-teams">
+                                        <div class="col-md-2 athlete-picture">
+                                            <img class="img-responsive profile-image" src="<%= user_mapping[yellow_team_data[i].classified][1] %>">
+                                        </div>
+                                        <div class="col-md-8 col-xs-10 athlete-name">
+                                            <%= user_mapping[yellow_team_data[i].classified][0] %>
+                                        </div>
+                                        <div class="col-md-2 col-xs-2 athlete-classification">
+                                            <span class="fa-stack">
+                                                      <i class="fa fa-star fa-stack-2x gold"></i>
+                                                      <span class="fa fa-stack"><%= yellow_team_data[i].average_value%></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                            </div>
+                            <div class="col-md-4 col-xs-12">
+                                <div class="row">
+                                    <div class="col-md-12 green-team">
+                                        <strong>Time Verde</strong>
+                                    </div>
+                                </div>
+                                <% for(var i = 0; i < green_team_data.length; i++) { %>
+                                    <div class="row table-teams">
+                                        <div class="col-md-2 athlete-picture">
+                                            <img class="img-responsive profile-image" src="<%= user_mapping[green_team_data[i].classified][1] %>">
+                                        </div>
+                                        <div class="col-md-8 col-xs-10 athlete-name">
+                                            <%= user_mapping[green_team_data[i].classified][0] %>
+                                        </div>
+                                        <div class="col-md-2 col-xs-2 athlete-classification">
+                                            <span class="fa-stack">
+                                                      <i class="fa fa-star fa-stack-2x gold"></i>
+                                                      <span class="fa fa-stack"><%= green_team_data[i].average_value%></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                    </div>-->
+
+            </div>
+        </main>
+        <% } %>
 </body>
-</center>
+
 </html>

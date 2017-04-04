@@ -1,51 +1,100 @@
 @import "bourbon";
-
 body {
-	background: #eee !important;
+    max-width: 80%;
+    margin: 0 auto;
+    background: #eee;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.label {
+    color: #bebebb;
+    font-size: 1em;
+}
+
+.row.is-flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.row.is-flex>[class*="col-"] {
+    display: flex;
+    flex-direction: column;
+}
+
+.center-aligned {
+    align-self: center;
+}
+
+.logo {
+    max-width: 50%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.nav-bar {
+    background-color: #2c2e3a;
+    color: #aaaaaa;
 }
 
 .wrapper {
-	margin-top: 80px;
-  margin-bottom: 80px;
+    margin-top: 80px;
+    margin-bottom: 80px;
 }
 
-.form-signin {
-  max-width: 380px;
-  padding: 15px 35px 45px;
-  margin: 0 auto;
-  background-color: #fff;
-  border: 1px solid rgba(0,0,0,0.1);
+.main-container {
+    align-self: center;
+}
 
-  .form-signin-heading,
-	.checkbox {
-	  margin-bottom: 30px;
-	}
+.main-title {
+    font-size: 5vw;
+    align-self: center;
+}
 
-	.checkbox {
-	  font-weight: normal;
-	}
+.action-area {
+    font-size: 18px;
+    align-self: center;
+    align-items: center;
+    text-align: center;
+}
 
-	.form-control {
-	  position: relative;
-	  font-size: 16px;
-	  height: auto;
-	  padding: 10px;
-		@include box-sizing(border-box);
+.action-text,
+.action-text:hover {
+    color: white;
+}
 
-		&:focus {
-		  z-index: 2;
-		}
-	}
+.main-area-text {
+    color: white;
+}
 
-	input[type="text"] {
-	  margin-bottom: -1px;
-	  border-bottom-left-radius: 0;
-	  border-bottom-right-radius: 0;
-	}
+.grayed-area {
+    background-color: #706f74;
+    border-radius: 10px;
+}
 
-	input[type="password"] {
-	  margin-bottom: 20px;
-	  border-top-left-radius: 0;
-	  border-top-right-radius: 0;
-	}
+@media screen and (max-width: 500px) {
+    .main-title {
+        font-size: 6vw;
+    }
+    .main-area-text {
+        font-size: 6vw;
+    }
+    .action-area {
+        font-size: 4vw;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .main-title {
+        font-size: 3.5vw;
+    }
+    .main-area-text {
+        font-size: 1.6vw;
+    }
+    .action-area {
+        font-size: 1.4vw;
+        align-items: center;
+        text-align: center;
+    }
 }

@@ -45,7 +45,7 @@ module.exports = function(app, passport) {
 		var connection = mysql.createConnection(dbconfig.connection);
 
 		connection.query('SELECT created_time from rda_schema.classifications WHERE classifier=' + req.user.id
-			+ ' ORDER BY created_time ASC', function (error, results, fields) {
+			+ ' ORDER BY created_time DESC', function (error, results, fields) {
 		  if (error) throw error;
 
 		  if (results.length > 0) {
@@ -55,6 +55,7 @@ module.exports = function(app, passport) {
 			  if (hours_since_last_classification < 168) {
 			  	res.statusCode = 401;
 				res.send('None shall pass');
+				return;
 			  }
 			  else {
 			  	classifications = req.body.classifications
@@ -64,8 +65,9 @@ module.exports = function(app, passport) {
 						connection.query('INSERT INTO rda_schema.classifications (created_time, classifier, classified, classification) values(' + connection.escape(new Date()) + ', ' + req.user.id + ', ' + classification[0] + ', ' + classification[1] + ')');
 					}
 					res.statusCode = 200;
-					res.send('Sucessful');
 				}
+				res.send('Sucessful');
+				return;
 			  }
 		  }
 		  else {

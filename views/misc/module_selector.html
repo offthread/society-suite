@@ -1,21 +1,78 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/login.css">
-	<script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
-	<script type="text/javascript" src="js/rda.js"></script>
+    <title>Racha dos Amigles - 2017</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/login.css">
+    <script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
+    <script type="text/javascript" src="js/rda.js"></script>
+
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 </head>
+
 <body>
-<center>
-    <div style="margin-top:120px">
-    	<center><img src="images/rda_logo1.png"></center>
-		<div class="btn-group-vertical" style="margin-top: 50px; width: 200px">
-		  <span class="label label-warning">Visão de Administrador</span>
-		  <button type="button" id="button_draw" class="btn btn-primary" style="margin-bottom: 5px">Sortear novos times</button>
-		  <button type="button" id="button_classify" class="btn btn-primary">Classificar jogadores</button>
-		</div>
+    <div class="row">
+        <nav>
+            <div class="row nav-bar is-flex">
+                <div class="col-md-3 col-xs-12 logo-container">
+                    <img class="img-responsive logo" src="images/rda_logo1.png">
+                </div>
+                <div class="col-md-6 col-xs-12 text-center main-container">
+                    <h1 class="main-title">
+                        Visão de Administrador
+                    </h1>
+                </div>
+
+                <div class="col-md-3 col-xs-12 action-area">
+                    <a class="action-text" href="/">Ver Último Sorteio</a>
+                    <a class="action-text" href="/login">Logout</a>
+                </div>
+            </div>
+        </nav>
+
+        <br>
+        <br>
+
+        <main>
+            <div id="main-info" class="row text-center">
+                <div class="col-md-3 col-lg-3"></div>
+                <div class="col-md-6 col-xs-12 col-lg-6">
+                    <div class="row grayed-area">
+
+                        <div class="col-md-12 text-center">
+                            <h1 class="main-area-text">Opções</h1>
+
+                            <br>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button id="button_draw" class="btn btn-success btn-block">Sortear novos times</button>
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button id="button_classify" class="btn btn-warning btn-block">Classificar jogadores</button>
+                                </div>
+                            </div>
+
+                            <br>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-2 col-lg-3 "></div>
+        </main>
     </div>
-</center>
 </body>
+
 </html>
