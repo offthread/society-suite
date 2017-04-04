@@ -93,7 +93,7 @@ module.exports = function(app, passport) {
 
 		classifications_end_time = new Date()
 
-		connection.query("SELECT classified, AVG(classification) AS average_value"
+		connection.query("SELECT classified, ROUND(AVG(classification),2) AS average_value"
 		 + " FROM rda_schema.classifications"
 		 + " WHERE created_time BETWEEN " + connection.escape(classifications_start_time) + " AND " + connection.escape(classifications_end_time)
 		 + " GROUP BY classified"
