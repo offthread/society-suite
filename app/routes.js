@@ -30,11 +30,21 @@ module.exports = function(app, passport) {
 	app.get('/classifier', function (req, res) {
 	  if(req.user) {
 	  	var connection = mysql.createConnection(dbconfig.connection);
-	  	connection.query('SELECT * from rda_schema.users', function (error, results, fields) {
-		  if (error) throw error;
-		  res.render('classifier/classifier.ejs', {users: results});
-		});
 
+	  	// Fetch user's last classifications
+	  	connection.query('SELECT * '
+	  		+ 'FROM rda_schema.classifications '
+	  		+ 'WHERE classifier=' + req.user.id
+	  		+ ' AND created_time='
+	  		+ '(SELECT MAX(created_time) FROM rda_schema.classifications WHERE classifier=' + req.user.id + ')',
+	  		 function (error, results, fields) {
+		  if (error) throw error;
+		  last_classifications = results
+		  connection.query('SELECT * from rda_schema.users', function (error, results, fields) {
+			  if (error) throw error;
+			  res.render('classifier/classifier.ejs', {users: results, last_classifications: last_classifications});
+			});
+		});
 	  }
 	  else {
 	  	res.redirect('/login');
