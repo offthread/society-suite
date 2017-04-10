@@ -40,22 +40,24 @@
 
         <br>
         <br>
-        <% if (red_team_data === undefined) { %>
-            <main>
-                <div id="main-info" class="row text-center">
-                    <div class="col-md-3 col-lg-1"></div>
-                    <div class="col-md-6 col-xs-12 col-lg-10">
-                        <div class="row grayed-area">
-                            <div class="col-md-12 text-center">
-                                <h2 class="main-area-text">Sem sorteios disponíveis para esse mês.</h2>
-                                <h3 class="h3-team-list">Aguarde o primeiro racha do mês para visualizar os times</h3>
-                                <br>
+        <% if (!red_team_data) { %>
+            <main class="row">
+                <div id="main-info" class="col-md-12 text-center grayed-area">
+                    <div class="row">
+                        <div class="col-md-2 col-lg-1"></div>
+                        <div class="col-md-8 col-lg-10">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <h2 class="main-area-text">Sem sorteios disponíveis para esse mês.</h2>
+                                    <h3>Aguarde o primeiro racha do mês para visualizar os times</h3>
+                                    <br>
+                                </div>
                             </div>
                         </div>
+                        <div class="col-md-2 col-lg-1"></div>
                     </div>
                 </div>
-    </div>
-    </main>
+            </main>
 
     <% } else { %>
 
@@ -68,87 +70,104 @@
                         <div class="row">
                             <div class="col-md-12 text-center">
                                 <h3 class="h3-team-list">Times sorteados</h3>
+                                <div class="alert alert-info alert-info-box text-justify">
+                                    <div class="text-center">
+                                        <strong>Legenda</strong>
+                                        <br>
+                                        P: Pontos | 
+                                        V: Vitórias | 
+                                        E: Empates | 
+                                        D: Derrotas | 
+                                        S.G.: Saldo de Gols
+                                    </div>
+                                </div>
                                 <br>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4 col-xs-12 col-lg-4">
+                            <div class="col-md-4 col-xs-12 col-lg-4 team-separator">
                                 <div class="row">
                                     <div class="col-md-12 red-team">
-                                        <strong>Time Vermelho</strong>
+                                        <h4 class="white"><strong>Time Vermelho</strong></h4>
+                                        <div class="white">
+                                            <b class="background-special-black">P: <%= red_team.points | 0 %> </b> | 
+                                            <b>V:</b> <%= red_team.wins | 0 %> | 
+                                            <b>D:</b> <%= red_team.losses | 0 %> | 
+                                            <b>E:</b> <%= red_team.draws | 0 %> | 
+                                            <b>S.G.:</b> <%= red_team.goals_for - red_team.goals_against | 0 %>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <% for(var i = 0; i < red_team_data.length; i++) { %>
-                                    <div class="row table-teams">
-                                        <div class="col-md-3 col-xs-2 col-lg-3">
+                                    <div class="row table-teams is-flex">
+                                        <div class="col-md-3 col-lg-3">
                                             <img class="profile-image athlete-picture" src="<%= user_mapping[red_team_data[i].classified][1] %>">
                                         </div>
-                                        <div class="col-md-6 col-xs-8 athlete-name col-lg-6">
+                                        <div class="col-md-5 col-xs-7 athlete-name col-lg-6">
                                             <%= user_mapping[red_team_data[i].classified][0] %>
                                         </div>
-                                        <div class="col-md-3 col-xs-2 col-lg-3 athlete-classification">
-                                            <span class="text-success"><%= red_team_data[i].average_value%><i class="fa fa-star gold"></i></span>
+                                        <div class="col-md-4 col-xs-3 col-lg-3 athlete-classification">
+                                            <span class="text-success"><%= i + 10 / 4 %><i class="fa fa-star gold"></i></span>
                                         </div>
                                     </div>
                                     <% } %>
-                                    <b>Vitórias:</b> <%= red_team.wins %>
-                                    <b>Derrotas:</b> <%= red_team.losses %>
-                                    <b>Empates:</b> <%= red_team.draws %>
-                                    <b>Pontos:</b> <%= red_team.points %>
-                                    <b>Saldo de Gols:</b> <%= red_team.goals_for - red_team.goals_against %>
                             </div>
-                            <div class="col-md-4 col-xs-12 col-lg-4">
+                            <div class="col-md-4 col-xs-12 col-lg-4 team-separator">
                                 <div class="row">
                                     <div class="col-md-12 yellow-team">
-                                        <strong>Time Amarelo</strong>
+                                        <h4><strong>Time Amarelo</strong></h4>
+                                        <div>
+                                            <b class="background-special-gray">P: <%= yellow_team.points | 0 %> </b> | 
+                                            <b>V:</b> <%= yellow_team.wins | 0 %> | 
+                                            <b>D:</b> <%= yellow_team.losses | 0 %> | 
+                                            <b>E:</b> <%= yellow_team.draws | 0 %> | 
+                                            <b>S.G.:</b> <%= yellow_team.goals_for - yellow_team.goals_against | 0 %>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <% for(var i = 0; i < yellow_team_data.length; i++) { %>
-                                    <div class="row table-teams">
-                                        <div class="col-md-3 col-xs-2 col-lg-3">
+                                    <div class="row table-teams is-flex">
+                                        <div class="col-md-3 col-lg-3">
                                             <img class="profile-image athlete-picture" src="<%= user_mapping[yellow_team_data[i].classified][1] %>">
                                         </div>
-                                        <div class="col-md-6 col-xs-8 athlete-name col-lg-6">
+                                        <div class="col-md-5 col-xs-7 athlete-name col-lg-6">
                                             <%= user_mapping[yellow_team_data[i].classified][0] %>
                                         </div>
-                                        <div class="col-md-3 col-xs-2 col-lg-3 athlete-classification">
-                                            <span class="text-success"><%= yellow_team_data[i].average_value%><i class="fa fa-star gold"></i></span>
+                                        <div class="col-md-4 col-xs-3 col-lg-3 athlete-classification">
+                                            <span class="text-success"><%= i + 5.7 / 2 %><i class="fa fa-star gold"></i></span>
                                         </div>
                                     </div>
                                     <% } %>
-                                    <b>Vitórias:</b> <%= yellow_team.wins %>
-                                    <b>Derrotas:</b> <%= yellow_team.losses %>
-                                    <b>Empates:</b> <%= yellow_team.draws %>
-                                    <b>Pontos:</b> <%= yellow_team.points %>
-                                    <b>Saldo de Gols:</b> <%= yellow_team.goals_for - yellow_team.goals_against %>
                             </div>
                             <div class="col-md-4 col-xs-12 col-lg-4">
                                 <div class="row">
                                     <div class="col-md-12 green-team">
-                                        <strong>Time Verde</strong>
+                                    <h4 class="white"><strong>Time Verde</strong></h4>
+                                    <div class="white">
+                                        <b class="background-special-black">P: <%= green_team.points | 0 %> </b> | 
+                                        <b>V:</b> <%= green_team.wins | 0 %> | 
+                                        <b>D:</b> <%= green_team.losses | 0 %> | 
+                                        <b>E:</b> <%= green_team.draws | 0 %> | 
+                                        <b>S.G.:</b> <%= green_team.goals_for - green_team.goals_against | 0 %>
+                                    </div>
                                     </div>
                                 </div>
 
                                 <% for(var i = 0; i < green_team_data.length; i++) { %>
-                                    <div class="row table-teams">
-                                        <div class="col-md-3 col-xs-2 col-lg-3">
+                                    <div class="row table-teams is-flex">
+                                        <div class="col-md-3 col-lg-3">
                                             <img class="profile-image athlete-picture" src="<%= user_mapping[green_team_data[i].classified][1] %>">
                                         </div>
-                                        <div class="col-md-6 col-xs-8 athlete-name col-lg-6">
+                                        <div class="col-md-5 col-xs-7 athlete-name col-lg-6">
                                             <%= user_mapping[green_team_data[i].classified][0] %>
                                         </div>
-                                        <div class="col-md-3 col-xs-2 col-lg-3 athlete-classification">
-                                            <span class="text-success"><%= green_team_data[i].average_value%><i class="fa fa-star gold"></i></span>
+                                        <div class="col-md-4 col-xs-3 col-lg-3 athlete-classification">
+                                            <span class="text-success"><%= green_team_data[i].average_value %><i class="fa fa-star gold"></i></span>
                                         </div>
                                     </div>
                                     <% } %>
-                                    <b>Vitórias:</b> <%= green_team.wins %>
-                                    <b>Derrotas:</b> <%= green_team.losses %>
-                                    <b>Empates:</b> <%= green_team.draws %>
-                                    <b>Pontos:</b> <%= green_team.points %>
-                                    <b>Saldo de Gols:</b> <%= green_team.goals_for - green_team.goals_against %>
                             </div>
                         </div>
                         <br>
@@ -156,105 +175,6 @@
                     </div>
                     <div class="col-md-2 col-lg-1"></div>
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <!--<div class="col-md-6 col-xs-12 col-lg-10">
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <h3 class="h3-team-list">Times sorteados</h3>
-                            <br>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 col-xs-12">
-                            <div class="row">
-                                <div class="col-md-12 red-team">
-                                    <strong>Time Vermelho</strong>
-                                </div>
-                            </div>
-
-                            <% for(var i = 0; i < red_team_data.length; i++) { %>
-                                <div class="row table-teams">
-                                    <div class="col-md-2 athlete-picture">
-                                        <img class="img-responsive profile-image" src="<%= user_mapping[red_team_data[i].classified][1] %>">
-                                    </div>
-                                    <div class="col-md-8 col-xs-10 athlete-name">
-                                        <%= user_mapping[red_team_data[i].classified][0] %>
-                                    </div>
-                                    <div class="col-md-2 col-xs-2 athlete-classification">
-                                        <span class="fa-stack">
-                                                      <i class="fa fa-star fa-stack-2x gold"></i>
-                                            <span class="fa fa-stack"><%= red_team_data[i].average_value%></span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <% } %>
-                            </div>
-                            <div class="col-md-4 col-xs-12">
-                                <div class="row">
-                                    <div class="col-md-12 yellow-team">
-                                        <strong>Time Amarelo</strong>
-                                    </div>
-                                </div>
-                                <% for(var i = 0; i < yellow_team_data.length; i++) { %>
-                                    <div class="row table-teams">
-                                        <div class="col-md-2 athlete-picture">
-                                            <img class="img-responsive profile-image" src="<%= user_mapping[yellow_team_data[i].classified][1] %>">
-                                        </div>
-                                        <div class="col-md-8 col-xs-10 athlete-name">
-                                            <%= user_mapping[yellow_team_data[i].classified][0] %>
-                                        </div>
-                                        <div class="col-md-2 col-xs-2 athlete-classification">
-                                            <span class="fa-stack">
-                                                      <i class="fa fa-star fa-stack-2x gold"></i>
-                                                      <span class="fa fa-stack"><%= yellow_team_data[i].average_value%></span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <% } %>
-                            </div>
-                            <div class="col-md-4 col-xs-12">
-                                <div class="row">
-                                    <div class="col-md-12 green-team">
-                                        <strong>Time Verde</strong>
-                                    </div>
-                                </div>
-                                <% for(var i = 0; i < green_team_data.length; i++) { %>
-                                    <div class="row table-teams">
-                                        <div class="col-md-2 athlete-picture">
-                                            <img class="img-responsive profile-image" src="<%= user_mapping[green_team_data[i].classified][1] %>">
-                                        </div>
-                                        <div class="col-md-8 col-xs-10 athlete-name">
-                                            <%= user_mapping[green_team_data[i].classified][0] %>
-                                        </div>
-                                        <div class="col-md-2 col-xs-2 athlete-classification">
-                                            <span class="fa-stack">
-                                                      <i class="fa fa-star fa-stack-2x gold"></i>
-                                                      <span class="fa fa-stack"><%= green_team_data[i].average_value%></span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <% } %>
-                            </div>
-                        </div>
-                        <br>
-                        <br>
-                        <br>
-                    </div>-->
-
             </div>
         </main>
         <% } %>

@@ -25,6 +25,10 @@ body {
     background-color: white;
 }
 
+.white {
+    color: white;
+}
+
 .profile-image {
     width: 30px;
     height: 30px;
@@ -36,6 +40,18 @@ body {
 
 .grayed-area {
     width: 100%;
+}
+
+.athlete-classification {
+    align-self: center;
+}
+
+.background-special-black {
+    background-color: black;
+}
+
+.background-special-gray {
+    background-color: lightgray;
 }
 
 @media screen and (max-width: 500px) {
@@ -51,5 +67,11 @@ body {
     .col-md-2 {
         padding-right: 0;
         padding-left: 0;
+    }
+}
+
+@media screen and (min-width: 933px) {
+    .team-separator {
+        border-right: solid 2px black;
     }
 }
