@@ -50,6 +50,14 @@
                 <div class="col-md-6 col-xs-12 col-lg-8 grayed-area">
                     <table class="table">
                         <tbody>
+                            <% check_last_classification_match = function(last_classifications, classified_id, value) {
+                                for(var i=0; i<last_classifications.length; i++) {
+                                    if (last_classifications[i].classified == classified_id) {
+                                        return last_classifications[i].classification == value ? "selected" : ""
+                                    }
+                                 }
+                                 return ''
+                            } %>
                             <% for(var i=0; i<users.length; i++) {%>
                                 <tr>
                                     <td>
@@ -68,16 +76,16 @@
                                                 <label class="label" for="classification-<%= users[i].id %>">Nota</label>
                                                 <select class="form-control" id="classification-<%= users[i].id %>">
                                                     <option></option>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                    <option>6</option>
-                                                    <option>7</option>
-                                                    <option>8</option>
-                                                    <option>9</option>
-                                                    <option>10</option>
+                                                    <option <%= check_last_classification_match(last_classifications, users[i].id, 1) %>>1</option>
+                                                    <option <%= check_last_classification_match(last_classifications, users[i].id, 2) %>>2</option>
+                                                    <option <%= check_last_classification_match(last_classifications, users[i].id, 3) %>>3</option>
+                                                    <option <%= check_last_classification_match(last_classifications, users[i].id, 4) %>>4</option>
+                                                    <option <%= check_last_classification_match(last_classifications, users[i].id, 5) %>>5</option>
+                                                    <option <%= check_last_classification_match(last_classifications, users[i].id, 6) %>>6</option>
+                                                    <option <%= check_last_classification_match(last_classifications, users[i].id, 7) %>>7</option>
+                                                    <option<%= check_last_classification_match(last_classifications, users[i].id, 8) %>>8</option>
+                                                    <option <%= check_last_classification_match(last_classifications, users[i].id, 9) %>>9</option>
+                                                    <option <%= check_last_classification_match(last_classifications, users[i].id, 10) %>>10</option>
                                                 </select>
                                             </div>
                                         </div>
