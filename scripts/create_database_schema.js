@@ -35,6 +35,12 @@ CREATE TABLE `' + dbconfig.database + '`.`' + dbconfig.teams_table + '` ( \
     `month` INT NOT NULL,\
     `color` VARCHAR(20) NOT NULL, \
     `players` JSON NOT NULL,\
+    `points` INT NOT NULL DEFAULT 0,\
+    `wins` INT NOT NULL DEFAULT 0,\
+    `losses` INT NOT NULL DEFAULT 0,\
+    `draws` INT NOT NULL DEFAULT 0,\
+    `goals_for` INT NOT NULL DEFAULT 0,\
+    `goals_against` INT NOT NULL DEFAULT 0,\
     UNIQUE INDEX `id_UNIQUE` (`id` ASC) \
 )');
 

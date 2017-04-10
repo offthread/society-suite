@@ -150,8 +150,9 @@ module.exports = function(app, passport) {
 		var monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
 		  "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
 		];
+		month = monthNames[current_month]
 
-		connection.query('SELECT color, players FROM rda_schema.teams WHERE year='  + current_year + ' AND month=' + current_month, function(err, rows, fields) {
+		connection.query('SELECT * FROM rda_schema.teams WHERE year='  + current_year + ' AND month=' + current_month, function(err, rows, fields) {
 			if (err) throw err;
 			red_team_data = null
 			yellow_team_data = null
@@ -159,12 +160,15 @@ module.exports = function(app, passport) {
 
 			for (var i = 0; i < rows.length; i++) {
 				if (rows[i].color == 'red') {
+					red_team = rows[i]
 					red_team_data = JSON.parse(rows[i].players).data
 				}
 				if (rows[i].color == 'yellow') {
+					yellow_team = rows[i]
 					yellow_team_data = JSON.parse(rows[i].players).data
 				}
 				if (rows[i].color == 'green') {
+					green_team = rows[i]
 					green_team_data = JSON.parse(rows[i].players).data
 				}
 			}
@@ -175,9 +179,7 @@ module.exports = function(app, passport) {
 					user_mapping[parseInt(rows[i].id)] = [rows[i].name, rows[i].picture]
 				}
 
-				res.render('teams/team_list.ejs', {user_mapping: user_mapping,
-					red_team: red_team_data, yellow_team: yellow_team_data, green_team: green_team_data,
-					year: current_year, month: monthNames[current_month]});
+				res.render('teams/team_list.ejs');
 			})
 
 		})
