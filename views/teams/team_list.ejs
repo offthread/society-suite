@@ -74,10 +74,10 @@
                                     <div class="text-center">
                                         <strong>Legenda</strong>
                                         <br>
-                                        P: Pontos | 
-                                        V: Vitórias | 
-                                        E: Empates | 
-                                        D: Derrotas | 
+                                        P: Pontos |
+                                        V: Vitórias |
+                                        E: Empates |
+                                        D: Derrotas |
                                         S.G.: Saldo de Gols
                                     </div>
                                 </div>
@@ -90,10 +90,10 @@
                                     <div class="col-md-12 red-team">
                                         <h4 class="white"><strong>Time Vermelho</strong></h4>
                                         <div class="white">
-                                            <b class="background-special-black">P: <%= red_team.points | 0 %> </b> | 
-                                            <b>V:</b> <%= red_team.wins | 0 %> | 
-                                            <b>D:</b> <%= red_team.losses | 0 %> | 
-                                            <b>E:</b> <%= red_team.draws | 0 %> | 
+                                            <b class="background-special-black">P: <%= red_team.points | 0 %> </b> |
+                                            <b>V:</b> <%= red_team.wins | 0 %> |
+                                            <b>D:</b> <%= red_team.losses | 0 %> |
+                                            <b>E:</b> <%= red_team.draws | 0 %> |
                                             <b>S.G.:</b> <%= red_team.goals_for - red_team.goals_against | 0 %>
                                         </div>
                                     </div>
@@ -108,7 +108,7 @@
                                             <%= user_mapping[red_team_data[i].classified][0] %>
                                         </div>
                                         <div class="col-md-4 col-xs-3 col-lg-3 athlete-classification">
-                                            <span class="text-success"><%= i + 10 / 4 %><i class="fa fa-star gold"></i></span>
+                                            <span class="text-success"><%= red_team_data[i].average_value %><i class="fa fa-star gold"></i></span>
                                         </div>
                                     </div>
                                     <% } %>
@@ -118,10 +118,10 @@
                                     <div class="col-md-12 yellow-team">
                                         <h4><strong>Time Amarelo</strong></h4>
                                         <div>
-                                            <b class="background-special-gray">P: <%= yellow_team.points | 0 %> </b> | 
-                                            <b>V:</b> <%= yellow_team.wins | 0 %> | 
-                                            <b>D:</b> <%= yellow_team.losses | 0 %> | 
-                                            <b>E:</b> <%= yellow_team.draws | 0 %> | 
+                                            <b class="background-special-gray">P: <%= yellow_team.points | 0 %> </b> |
+                                            <b>V:</b> <%= yellow_team.wins | 0 %> |
+                                            <b>D:</b> <%= yellow_team.losses | 0 %> |
+                                            <b>E:</b> <%= yellow_team.draws | 0 %> |
                                             <b>S.G.:</b> <%= yellow_team.goals_for - yellow_team.goals_against | 0 %>
                                         </div>
                                     </div>
@@ -136,7 +136,7 @@
                                             <%= user_mapping[yellow_team_data[i].classified][0] %>
                                         </div>
                                         <div class="col-md-4 col-xs-3 col-lg-3 athlete-classification">
-                                            <span class="text-success"><%= i + 5.7 / 2 %><i class="fa fa-star gold"></i></span>
+                                            <span class="text-success"><%= yellow_team_data[i].average_value %><i class="fa fa-star gold"></i></span>
                                         </div>
                                     </div>
                                     <% } %>
@@ -146,10 +146,10 @@
                                     <div class="col-md-12 green-team">
                                     <h4 class="white"><strong>Time Verde</strong></h4>
                                     <div class="white">
-                                        <b class="background-special-black">P: <%= green_team.points | 0 %> </b> | 
-                                        <b>V:</b> <%= green_team.wins | 0 %> | 
-                                        <b>D:</b> <%= green_team.losses | 0 %> | 
-                                        <b>E:</b> <%= green_team.draws | 0 %> | 
+                                        <b class="background-special-black">P: <%= green_team.points | 0 %> </b> |
+                                        <b>V:</b> <%= green_team.wins | 0 %> |
+                                        <b>D:</b> <%= green_team.losses | 0 %> |
+                                        <b>E:</b> <%= green_team.draws | 0 %> |
                                         <b>S.G.:</b> <%= green_team.goals_for - green_team.goals_against | 0 %>
                                     </div>
                                     </div>
