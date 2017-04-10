@@ -7,6 +7,7 @@
     "dev": "node app.js",
     "create_database": "node scripts/create_database_schema.js",
     "create_users": "node scripts/create_users.js",
+    "authorize_classifications": "node scripts/enable_weekly_classifications.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -29,10 +30,10 @@
     "express-session": "^1.15.1",
     "morgan": "^1.8.1",
     "mysql": "^2.13.0",
+    "node-crontab": "0.0.8",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0"
   },
-
   "engines": {
     "node": "4.2.6"
   }
