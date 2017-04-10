@@ -54,20 +54,17 @@ module.exports = function(app, passport) {
 	app.post('/classifier', function (req, res) {
 		var connection = mysql.createConnection(dbconfig.connection);
 
-		connection.query('SELECT created_time from rda_schema.classifications WHERE classifier=' + req.user.id
-			+ ' ORDER BY created_time DESC', function (error, results, fields) {
+		connection.query('SELECT has_classified_this_week from rda_schema.users WHERE id=' + req.user.id, function (error, results, fields) {
 		  if (error) throw error;
 
 		  if (results.length > 0) {
-		  	  date_now = new Date()
-			  last_sent_classification = new Date(results[0].created_time)
-			  hours_since_last_classification = Math.abs(date_now - last_sent_classification) / 36e5
-			  if (hours_since_last_classification < 168) {
+			  if (results[0].has_classified_this_week == 1) {
 			  	res.statusCode = 401;
 				res.send('None shall pass');
 				return;
 			  }
 			  else {
+
 			  	classifications = req.body.classifications
 				for (var i = 0; i < classifications.length; i++) {
 					classification = classifications[i]
@@ -76,8 +73,11 @@ module.exports = function(app, passport) {
 					}
 					res.statusCode = 200;
 				}
-				res.send('Sucessful');
-				return;
+				connection.query('UPDATE rda_schema.users SET has_classified_this_week=1 WHERE id=' + req.user.id, function (error, results, fields) {
+					res.send('Sucessful');
+					return;
+				})
+
 			  }
 		  }
 		  else {
@@ -89,6 +89,10 @@ module.exports = function(app, passport) {
 				}
 			}
 			res.statusCode = 200;
+			connection.query('UPDATE rda_schema.users SET has_classified_this_week=1 WHERE id=' + req.user.id, function (error, results, fields) {
+					res.send('Sucessful');
+					return;
+				})
 			res.send('Sucessful');
 		  }
 		});

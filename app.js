@@ -6,11 +6,11 @@ var morgan = require('morgan');
 var app      = express();
 var passport = require('passport');
 var flash    = require('connect-flash');
-
+var crontab = require('node-crontab');
+var mysql = require('mysql');
+var dbconfig = require('./config/database');
 
 require('./config/passport')(passport); // pass passport for configuration
-
-
 
 app.use(express.static('public'));
 app.set('views', __dirname + '/views');
@@ -39,6 +39,13 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routes ======================================================================
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+
+var connection = mysql.createConnection(dbconfig.connection);
+
+// Enable classifications every Friday at 00:00 (server is UTC)
+var jobId = crontab.scheduleJob("0 3 * * 5", function(){
+    connection.query('UPDATE rda_schema.users SET has_classified_this_week=0');
+});
 
 app.listen(3000, function () {
 
