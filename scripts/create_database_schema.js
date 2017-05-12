@@ -13,6 +13,8 @@ CREATE TABLE `' + dbconfig.database + '`.`' + dbconfig.users_table + '` ( \
     `password` CHAR(60) NOT NULL, \
     `picture` VARCHAR(500) NOT NULL, \
     `is_admin` TINYINT(1) NOT NULL, \
+    `email` VARCHAR(50), \
+    `reset_token` VARCHAR(32), \
         PRIMARY KEY (`id`), \
     UNIQUE INDEX `id_UNIQUE` (`id` ASC), \
     UNIQUE INDEX `username_UNIQUE` (`username` ASC) \
