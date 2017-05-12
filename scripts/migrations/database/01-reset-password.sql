@@ -1,0 +1,3 @@
+ALTER TABLE `users`
+ADD COLUMN `email` VARCHAR(50),
+ADD COLUMN `reset_token` VARCHAR(32);
