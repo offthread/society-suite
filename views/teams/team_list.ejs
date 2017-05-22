@@ -101,15 +101,28 @@
 
                                 <% for(var i = 0; i < red_team_data.length; i++) { %>
                                     <div class="row table-teams is-flex">
-                                        <div class="col-md-3 col-lg-3">
-                                            <img class="profile-image athlete-picture" src="<%= user_mapping[red_team_data[i].classified][1] %>">
-                                        </div>
-                                        <div class="col-md-5 col-xs-7 athlete-name col-lg-6">
-                                            <%= user_mapping[red_team_data[i].classified][0] %>
-                                        </div>
-                                        <div class="col-md-4 col-xs-3 col-lg-3 athlete-classification">
-                                            <span class="text-success"><%= red_team_data[i].average_value %><i class="fa fa-star gold"></i></span>
-                                        </div>
+                                        <%if (user_mapping[red_team_data[i].classified]) { %>
+                                            <div class="col-md-3 col-lg-3">
+                                                <img class="profile-image athlete-picture" src="<%= user_mapping[red_team_data[i].classified][1] %>">
+                                            </div>
+                                            <div class="col-md-5 col-xs-7 athlete-name col-lg-6">
+                                                <%= user_mapping[red_team_data[i].classified][0] %>
+                                            </div>
+                                            <div class="col-md-4 col-xs-3 col-lg-3 athlete-classification">
+                                                <span class="text-success"><%= red_team_data[i].average_value %><i class="fa fa-star gold"></i></span>
+                                            </div>
+                                        <% } %>
+                                        <% else{ %>
+                                            <div class="col-md-3 col-lg-3">
+                                                <img class="profile-image athlete-picture" src="https://image.flaticon.com/icons/png/512/37/37943.png">
+                                            </div>
+                                            <div class="col-md-5 col-xs-7 athlete-name col-lg-6">
+                                                N/A
+                                            </div>
+                                            <div class="col-md-4 col-xs-3 col-lg-3 athlete-classification">
+                                                <span class="text-success"><%= yellow_team_data[i].average_value %><i class="fa fa-star gold"></i></span>
+                                            </div>
+                                        <% } %>
                                     </div>
                                     <% } %>
                             </div>
@@ -129,15 +142,28 @@
 
                                 <% for(var i = 0; i < yellow_team_data.length; i++) { %>
                                     <div class="row table-teams is-flex">
-                                        <div class="col-md-3 col-lg-3">
-                                            <img class="profile-image athlete-picture" src="<%= user_mapping[yellow_team_data[i].classified][1] %>">
-                                        </div>
-                                        <div class="col-md-5 col-xs-7 athlete-name col-lg-6">
-                                            <%= user_mapping[yellow_team_data[i].classified][0] %>
-                                        </div>
-                                        <div class="col-md-4 col-xs-3 col-lg-3 athlete-classification">
-                                            <span class="text-success"><%= yellow_team_data[i].average_value %><i class="fa fa-star gold"></i></span>
-                                        </div>
+                                        <%if (user_mapping[yellow_team_data[i].classified]) { %>
+                                            <div class="col-md-3 col-lg-3">
+                                                <img class="profile-image athlete-picture" src="<%= user_mapping[yellow_team_data[i].classified][1] %>">
+                                            </div>
+                                            <div class="col-md-5 col-xs-7 athlete-name col-lg-6">
+                                                <%= user_mapping[yellow_team_data[i].classified][0] %>
+                                            </div>
+                                            <div class="col-md-4 col-xs-3 col-lg-3 athlete-classification">
+                                                <span class="text-success"><%= yellow_team_data[i].average_value %><i class="fa fa-star gold"></i></span>
+                                            </div>
+                                        <% } %>
+                                        <% else{ %>
+                                            <div class="col-md-3 col-lg-3">
+                                                <img class="profile-image athlete-picture" src="https://image.flaticon.com/icons/png/512/37/37943.png">
+                                            </div>
+                                            <div class="col-md-5 col-xs-7 athlete-name col-lg-6">
+                                                N/A
+                                            </div>
+                                            <div class="col-md-4 col-xs-3 col-lg-3 athlete-classification">
+                                                <span class="text-success">N/A<i class="fa fa-star gold"></i></span>
+                                            </div>
+                                        <% } %>
                                     </div>
                                     <% } %>
                             </div>
@@ -157,15 +183,28 @@
 
                                 <% for(var i = 0; i < green_team_data.length; i++) { %>
                                     <div class="row table-teams is-flex">
-                                        <div class="col-md-3 col-lg-3">
-                                            <img class="profile-image athlete-picture" src="<%= user_mapping[green_team_data[i].classified][1] %>">
-                                        </div>
-                                        <div class="col-md-5 col-xs-7 athlete-name col-lg-6">
-                                            <%= user_mapping[green_team_data[i].classified][0] %>
-                                        </div>
-                                        <div class="col-md-4 col-xs-3 col-lg-3 athlete-classification">
-                                            <span class="text-success"><%= green_team_data[i].average_value %><i class="fa fa-star gold"></i></span>
-                                        </div>
+                                        <%if (user_mapping[green_team_data[i].classified]) { %>
+                                            <div class="col-md-3 col-lg-3">
+                                                <img class="profile-image athlete-picture" src="<%= user_mapping[green_team_data[i].classified][1] %>">
+                                            </div>
+                                            <div class="col-md-5 col-xs-7 athlete-name col-lg-6">
+                                                <%= user_mapping[green_team_data[i].classified][0] %>
+                                            </div>
+                                            <div class="col-md-4 col-xs-3 col-lg-3 athlete-classification">
+                                                <span class="text-success"><%= green_team_data[i].average_value %><i class="fa fa-star gold"></i></span>
+                                            </div>
+                                        <% } %>
+                                        <% else{ %>
+                                            <div class="col-md-3 col-lg-3">
+                                                <img class="profile-image athlete-picture" src="https://image.flaticon.com/icons/png/512/37/37943.png">
+                                            </div>
+                                            <div class="col-md-5 col-xs-7 athlete-name col-lg-6">
+                                                N/A
+                                            </div>
+                                            <div class="col-md-4 col-xs-3 col-lg-3 athlete-classification">
+                                                <span class="text-success">N/A<i class="fa fa-star gold"></i></span>
+                                            </div>
+                                        <% } %>
                                     </div>
                                     <% } %>
                             </div>
