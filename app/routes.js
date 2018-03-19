@@ -1,4 +1,3 @@
-
 var dbconfig = require('../config/database');
 var mysql = require('mysql');
 
@@ -107,24 +106,24 @@ module.exports = function(app, passport) {
 
 		classifications_end_time = new Date()
 
-		connection.query("SELECT classified, ROUND(AVG(classification),2) AS average_value"
-		 + " FROM rda_schema.classifications"
-		 + " WHERE created_time BETWEEN " + connection.escape(classifications_start_time) + " AND " + connection.escape(classifications_end_time)
-		 + " GROUP BY classified"
+		connection.query("SELECT c.classified, ROUND(AVG(c.classification),2) AS average_value"
+		 + " FROM rda_schema.classifications c"
+		 + " INNER JOIN rda_schema.users u ON c.classified = u.id"
+		 + " WHERE"
+		 + "   c.created_time BETWEEN " + connection.escape(classifications_start_time) + "   AND " + connection.escape(classifications_end_time)
+		 + "   AND u.is_active"
+		 + " GROUP BY c.classified"
 		 + " ORDER BY average_value DESC", function(err, rows, fields) {
 			if (err) throw err;
-			group_one = shuffle(rows.slice(0,3))
-			group_two = shuffle(rows.slice(3,6))
-			group_three = shuffle(rows.slice(6,9))
-			group_four = shuffle(rows.slice(9,12))
-			group_five = shuffle(rows.slice(12,15))
-			group_six = shuffle(rows.slice(15,18))
-			group_seven = shuffle(rows.slice(18,21))
-			group_eight = shuffle(rows.slice(21,24))
 
-			red_team = [group_one[0], group_two[0], group_three[0], group_four[0], group_five[0], group_six[0], group_seven[0], group_eight[0]]
-			green_team = [group_one[1], group_two[1], group_three[1], group_four[1], group_five[1], group_six[1], group_seven[1], group_eight[1]]
-			yellow_team = [group_one[2], group_two[2], group_three[2], group_four[2], group_five[2], group_six[2], group_seven[2], group_eight[2]]
+			const teams = [ [], [], [] ];
+			for (let i = 0; i < rows.length; i += 3) {
+				var group = shuffle(rows.slice(i, i + 3));
+				for (let j = 0; j < group.length; j++) {
+					teams[j].push(group[j]);
+				}
+			}
+			const [ red_team, yellow_team , green_team ] = teams;
 
 			now = new Date()
 			json_red_team = '{ "data": ' + JSON.stringify(red_team) + '}'
